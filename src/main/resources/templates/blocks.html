@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Welcome to Flybit</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+</head>
+<body>
+<p th:text="'Hello, ' + ${name} + '!'"/>
+
+<table>
+    <thead>
+    <tr>
+        <td>Height</td>
+        <td>Harvester</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="blockVO : ${blocksVOList}">
+        <td th:text="${blockVO.height}"></td>
+        <td th:text="${blockVO.harvester}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

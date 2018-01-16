@@ -20,6 +20,20 @@ public class ShowBlocksController {
     @Autowired
     private ShowBlocksServices showBlocksServices;
 
+    @RequestMapping("/")
+    public String defBlocks(@RequestParam(value = "name", required = false) String name, Model model) {
+        logger.info("name:" + name);
+        model.addAttribute("name", name);
+        List<BlocksVO> blocksVOList = null;
+        if (name != null && name.trim().length() > 0) {
+            blocksVOList = showBlocksServices.fetchBlocks(name);
+        } else {
+            blocksVOList = showBlocksServices.fetchAllBlocks();
+        }
+        model.addAttribute("blocksVOList", blocksVOList);
+        return "blocks";
+    }
+
     @RequestMapping("blocks")
     public String blocks(@RequestParam(value = "name", required = false) String name, Model model) {
         logger.info("name:" + name);

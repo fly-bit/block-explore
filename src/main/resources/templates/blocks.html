@@ -11,7 +11,7 @@
 <div>
     <form th:action="@{/searchBlocks}" method="post">
         <input type="text" name="harvester" th:value="${harvester}"/>
-        <input type="submit" value="Subscribe me!" th:value="submit"/>
+        <input type="submit" th:value="#{searchBlocks.submit}"/>
     </form>
 </div>
 <div>

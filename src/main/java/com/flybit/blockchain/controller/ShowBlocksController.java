@@ -3,6 +3,7 @@ package com.flybit.blockchain.controller;
 import com.flybit.blockchain.services.ShowBlocksServices;
 import com.flybit.blockchain.vo.BlocksVO;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +15,14 @@ import java.util.List;
 @Controller
 public class ShowBlocksController {
 
+    private static Logger logger = Logger.getLogger(ShowBlocksController.class);
+
     @Autowired
     private ShowBlocksServices showBlocksServices;
 
     @RequestMapping("blocks")
     public String blocks(@RequestParam(value = "name", required = false) String name, Model model) {
+        logger.info("name:" + name);
         model.addAttribute("name", name);
         List<BlocksVO> blocksVOList = null;
         if (name != null && name.trim().length() > 0) {
@@ -32,6 +36,7 @@ public class ShowBlocksController {
 
     @RequestMapping("searchBlocks")
     public String searchBlocks(String harvester, Model model) {
+        logger.info("harvester:" + harvester);
         model.addAttribute("harvester", harvester);
         List<BlocksVO> blocksVOList = showBlocksServices.fetchBlocks(harvester);
         model.addAttribute("blocksVOList", blocksVOList);

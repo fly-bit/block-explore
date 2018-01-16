@@ -7,20 +7,28 @@
 </head>
 <body>
 <p th:text="'Hello, ' + ${name} + '!'"/>
-
-<table>
-    <thead>
-    <tr>
-        <td>Height</td>
-        <td>Harvester</td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="blockVO : ${blocksVOList}">
-        <td th:text="${blockVO.height}"></td>
-        <td th:text="${blockVO.harvester}"></td>
-    </tr>
-    </tbody>
-</table>
+<br/>
+<div>
+    <form th:action="@{/searchBlocks}" method="post">
+        <input type="text" name="harvester" th:value="${harvester}"/>
+        <input type="submit" value="Subscribe me!" th:value="submit"/>
+    </form>
+</div>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <td>Height</td>
+            <td>Harvester</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="blockVO : ${blocksVOList}">
+            <td th:text="${blockVO.height}"></td>
+            <td th:text="${blockVO.harvester}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

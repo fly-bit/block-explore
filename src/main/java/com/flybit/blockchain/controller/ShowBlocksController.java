@@ -29,4 +29,12 @@ public class ShowBlocksController {
         model.addAttribute("blocksVOList", blocksVOList);
         return "blocks";
     }
+
+    @RequestMapping("searchBlocks")
+    public String searchBlocks(String harvester, Model model) {
+        model.addAttribute("harvester", harvester);
+        List<BlocksVO> blocksVOList = showBlocksServices.fetchBlocks(harvester);
+        model.addAttribute("blocksVOList", blocksVOList);
+        return "blocks";
+    }
 }
